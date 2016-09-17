@@ -6,7 +6,50 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="https://bootswatch.com/sandstone/bootstrap.css" media="screen">
-  <link rel="stylesheet" href="https://bootswatch.com/assets/css/custom.min.css">
+  <style>
+    a{ color : #fff; }
+    body{background: #8a8a8a}
+    @media (min-width: 1200px) {
+      .container{
+        max-width: 900px;
+
+      }
+    }
+    .tile.tile-medium {
+      height: 150px;
+      width: 150px;
+    }
+    .tile {
+      display: block;
+      cursor: pointer;
+      -webkit-perspective: 0;
+      -webkit-transform-style: preserve-3d;
+      -webkit-transition: -webkit-transform .2s;
+      float: left;
+      min-width: 75px;
+      min-height: 75px;
+      text-align: center;
+      opacity: .75;
+      background-color: #2e8bcc;
+      z-index: 1;
+      border: 4px #fff solid;
+      color: #fff;
+    }
+
+    .thumbnail {
+      display: block;
+      padding: 4px;
+      margin-bottom: 20px;
+      line-height: 1.428571429;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 0;
+      -webkit-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+      display:inline;
+    }
+  </style>
+
 </head>
 <body>
 

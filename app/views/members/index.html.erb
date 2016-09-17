@@ -1,20 +1,34 @@
-<h1>Welcome members</h1>
+<div class="container" style="background: #fff; margin-top: 1%; border-radius: 25px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+  <div class="row" style="padding: 20px">
+    <div class="col-lg-8 col-md-7 col-sm-6">
 
-<%= form_tag( { :action => :create, }, { :method => :post }) %>
-Name : <%= text_field "member", "name", "size" => 20 %> <br/>
-Email : <%= text_field "member", "email", "size" => 20 %> <br/>
-Password : <%= password_field "member", "password", "size" => 20 %><br/>
-<%= submit_tag("Sign up") %>
+      <%= form_tag({:action => :create, :method => :post}, {:class => 'form-horizontal'}) %>
+      <div class="form-group">
+        <label for="inputEmail" class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-10">
+          <%= text_field "member", "name", "class" => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+        <div class="col-lg-10">
+          <%= text_field "member", "email", "class" => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+        <div class="col-lg-10">
+          <%= password_field "member", "password_field", "class" => "form-control" %>
+        </div>
+      </div>
 
-
-<h1>registered members</h1>
-<table>
-<tbody>
-<% @members.each do |member| %>
-    <tr>
-      <td><%= member.name %></td>
-
-    </tr>
-<% end %>
-</tbody>
-</table>
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <button type="reset" class="btn btn-default">Cancel</button>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
