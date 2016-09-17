@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
   def index
@@ -22,6 +24,6 @@ class MembersController < ApplicationController
   end
 
   def member_param
-    params.require(:member).permit(:email, :name,:password)
+    params.require(:member).permit(:email, :name, :password_field)
   end
 end
