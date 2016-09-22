@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -6,6 +8,17 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   resources :members
+
+  root :to => "sessions#login"
+  get "signup", :to => "members#index"
+  get "login", :to => "sessions#login"
+  post "login_attempt", :to => "sessions#login_attempt"
+
+  get "logout", :to => "sessions#logout"
+  get "home", :to => "sessions#home"
+  get "profile", :to => "sessions#profile"
+  get "setting", :to => "sessions#setting"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

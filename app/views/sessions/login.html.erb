@@ -1,0 +1,70 @@
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Library Rooms</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#">About</a>
+        </li>
+        <li>
+          <a href="#">Services</a>
+        </li>
+        <li>
+          <a href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container" style="background: #fff; margin-top: 1%; border-radius: 25px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+  <img src="assets/drawing.png" style="padding: 10px;" />
+  <div class="row" style="padding: 20px">
+    <% flash.each do |key, value| %>
+        <div class="col-md-10 col-sm-12 p-a-3">
+          <div class="row omb_row-sm-offset-3 no-gutter m-a-3">
+            <div class="col-xs-12 col-sm-6">
+          <%= content_tag(:span, value, :class => "label label-danger") %>
+            </div>
+          </div></div>
+    <% end %>
+    <% flash.clear %>
+    <div class="col-md-10 col-sm-12 p-a-3">
+      <div class="row omb_row-sm-offset-3 no-gutter m-a-3">
+        <div class="col-xs-12 col-sm-6">
+          <div class="col-md-12">
+            <%= form_tag({:action => 'login_attempt', :method => :post}, {:class => 'form-horizontal'}) %>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <%= text_field "member", "email", "class" => "form-control", "placeholder" => "email address" %>
+              </div>
+              <span class="help-block"></span>
+
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <%= password_field "member", "password", "class" => "form-control" , "placeholder" => "password"%>
+              </div>
+              <br/>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->
