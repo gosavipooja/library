@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  userid: 1
+  roomid: 1
+  time_start: 2016-09-22 12:23:33
+  time_end: 2016-09-22 12:23:33
+
+two:
+  userid: 1
+  roomid: 1
+  time_start: 2016-09-22 12:23:33
+  time_end: 2016-09-22 12:23:33

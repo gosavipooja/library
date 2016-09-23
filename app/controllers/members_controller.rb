@@ -9,6 +9,8 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_param)
     if @member.save
+      redirect_to :controller => 'sessions', :action => 'login'
+    else
       redirect_to :action => :index
     end
   end

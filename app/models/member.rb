@@ -19,4 +19,17 @@ class Member < ActiveRecord::Base
     self.password = Digest::SHA1.hexdigest(password_field).to_s
   end
 
+  def self.authenticate(email="", login_password="")
+      member = Member.find_by_email(email)
+    if member && member.match_password(login_password)
+      return member
+    else
+      return false
+    end
+  end
+
+  public
+  def match_password(login_password="")
+    password == Digest::SHA1.hexdigest(login_password).to_s
+  end
 end
