@@ -19,9 +19,5 @@ test:
   username: postgres
   password:
 production:
-    adapter: postgresql
-    encoding: unicode
-    database: library
-    pool: 5
-    username: postgres
-    password:
+  encoding: utf8
+  pool: 15
