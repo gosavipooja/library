@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
 
+  get "rooms/add", :to => "rooms#add"
+
+  get "rooms/edit", :to => "rooms#edit"
+
+  get "rooms/index", :to => "rooms#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
