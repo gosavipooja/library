@@ -26,6 +26,15 @@ Rails.application.routes.draw do
   get "setting", :to => "sessions#setting"
   get "logout", :to => "sessions#logout"
 
+  post "rooms/add"
+  resources :rooms, :only => [:add, :create]
+  match '/rooms' => 'rooms#add', :via => :post
+  resources :rooms do
+    collection do
+      get 'showall'
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
