@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get "home", :to => "sessions#home"
   get "profile", :to => "sessions#profile"
   get "setting", :to => "sessions#setting"
+  get "logout", :to => "sessions#logout"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

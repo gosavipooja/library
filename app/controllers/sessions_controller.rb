@@ -5,7 +5,8 @@ class SessionsController < ApplicationController
       redirect_to(:action => 'home')
     end
   end
-  def login_attempt    authorized_user = Member.authenticate(params[:member][:email],params[:member][:password])
+  def login_attempt
+    authorized_user = Member.authenticate(params[:member][:email],params[:member][:password])
     if session[:user_id]
       redirect_to(:action => 'home')
     end
@@ -18,5 +19,11 @@ class SessionsController < ApplicationController
       flash[:notice] = "Invalid Username or Password"
       render "login"
     end
+  end
+
+  def logout
+    session[:user_id] = nil
+    flash[:notice] = "You have been successfully logged out"
+    redirect_to(:action => 'login')
   end
 end
