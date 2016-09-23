@@ -19,6 +19,7 @@ def new
 end
 def edit
   @room = Room.find(params[:id])
+  @room.destroy
 end
 
 def create
@@ -32,9 +33,10 @@ def create
 end
 def update
   @room = Room.find(params[:id])
- 
+		
   if @room.update(room_params)
-    redirect_to @room
+     
+	 redirect_to @room
   else
     render 'edit'
   end
