@@ -2,7 +2,7 @@
   <div class="row" style="padding: 20px">
 
 
-    <img src="assets/drawing.png"/>
+    <% image_url('drawing.png') %>
       <%= form_tag({:action => :create, :method => :post}, {:class => 'form-horizontal'}) %>
       <div class="form-group">
         <label for="inputName" class="col-lg-2 control-label">Name</label>
