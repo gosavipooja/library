@@ -19,19 +19,23 @@ Rails.application.routes.draw do
   get "signup", :to => "members#index"
   get "login", :to => "sessions#login"
   post "login_attempt", :to => "sessions#login_attempt"
-
+  get "createadmin", :to => "members#create_admin"
+  get "showadmins", :to => "members#show_admin"
   get "logout", :to => "sessions#logout"
   get "home", :to => "sessions#home"
+  get "adminhome", :to => "sessions#adminhome"
   get "profile", :to => "sessions#profile"
   get "setting", :to => "sessions#setting"
   get "logout", :to => "sessions#logout"
 
   post "rooms/add"
+  post "rooms/create" => "rooms#create"
   resources :rooms, :only => [:add, :create]
   match '/rooms' => 'rooms#add', :via => :post
   resources :rooms do
     collection do
       get 'showall'
+
     end
   end
 

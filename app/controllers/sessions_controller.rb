@@ -13,8 +13,12 @@ class SessionsController < ApplicationController
     if authorized_user
       session[:user_id] = authorized_user.id
       session[:name] = authorized_user.name
-      flash[:notice] = "Wow Welcome again, you logged in as #{authorized_user.name}"
-      redirect_to(:action => 'home')
+      if authorized_user.is_admin
+        session[:is_admin] = true
+        redirect_to(:action => 'adminhome')
+      else
+        redirect_to(:action => 'home')
+      end
     else
       flash[:notice] = "Invalid Username or Password"
       render "login"
@@ -23,6 +27,8 @@ class SessionsController < ApplicationController
 
   def logout
     session[:user_id] = nil
+    session[:name] = nil
+    session[:is_admin] = nil
     flash[:notice] = "You have been successfully logged out"
     redirect_to(:action => 'login')
   end
