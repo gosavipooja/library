@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   get "booking",   :to => "reservations#book"
   get "delete", :to => "reservations#destroy"
   get "settings", :to => "sessions#settings"
-  post "update", :to => "members#update"
+  post "update", :to => "members#updateuser"
   post "rooms/add"
   post "rooms/create" => "rooms#create"
   resources :rooms, :only => [:add, :create]

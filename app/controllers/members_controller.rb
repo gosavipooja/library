@@ -7,20 +7,20 @@ class MembersController < ApplicationController
       @members = Member.all
   end
 
-  def update
-    member = Member.authenticate(params[:email], params[:old_password])
+  def updateuser
+    member = Member.authenticate(params[:member][:email], params[:member][:old_password_field])
 
     if (member)
       @password = new_password
-      if @member.update(member_param)
+      if @member.update(Memmember_param)
         redirect_to :controller => 'sessions', :action => 'home'
       else
         flash[:notice]="Please enter valid email id and password"
-        render "setting"
+        redirect_to :controller => 'sessions', :action => 'settings'
       end
     else
       flash[:notice]="Invalid password or email id"
-      render "setting"
+      redirect_to :controller => 'sessions', :action => 'settings'
     end
   end
 
