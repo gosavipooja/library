@@ -20,5 +20,10 @@ test:
   password:
 production:
   encoding: utf8
-  pool: 15
-  url: <%= ENV['DATABASE_URL'] %>
+  adapter: postgresql
+   encoding: unicode
+   url: <%= ENV["DATABASEURL"] %>
+   database: <%= ENV["DATABASE"] %>
+   pool: 5
+   username: <%= ENV["UNAME"] %>
+   password: <%= ENV["PASSWORD"] %>
