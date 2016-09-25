@@ -52,7 +52,7 @@
             <td><a href="<%= room_path(room) %>" style="color:#222;"> <i class="fa fa-calendar" aria-hidden="true"></i></a></td>
             <td>
               <%= form_tag({:action => :create, :controller => :reservations, :method => :post}) %>
-              <input type="hidden" name="reservation[userid]" value="<%= session[:user_id] %>"> <input type="hidden" name="reservation[roomid]" value="<%=room.id%>"><input type="hidden" name="reservation[time_start]" value="<%=@start_date%>"><button type="submit"  <% if @status == true %>disabled = "true"<%end%> class = "btn btn-success btn-sm <% if @status == true %>disabled<%end%> <i class="fa fa-check-square-o " aria-hidden="true"></i> Book</button></td>
+              <input type="hidden" name="reservation[userid]" value="<%= session[:user_id] %>"> <input type="hidden" name="reservation[roomid]" value="<%=room.id%>"><input type="hidden" name="reservation[time_start]" value="<%=@start_date%>"><button type="submit"  <% if @status == true %>disabled = "true"<%end%> class = "btn btn-success btn-sm <% if @status == true %>disabled<%end%> <i class="fa fa-check-square-o></button> " aria-hidden="true"></i> Book</td>
           </tr>
       <% end %>
       <tr>

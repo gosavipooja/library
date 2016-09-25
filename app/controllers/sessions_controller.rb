@@ -52,25 +52,47 @@ class SessionsController < ApplicationController
       time_local = params[:session][:time]
       size = params[:session][:size]
       building = params[:session][:building]
-      @arr1 = date_string.to_s.split('-')
-      @arr2 = time_local.to_s.split(':')
+
+      @arr1 = {}
+      @arr2 = {}
+
+      if (date_string == "")
+        date = Date.today
+        @arr1[0] = date.year
+        @arr1[1] = date.month
+        @arr1[2] = date.day
+      else
+        @arr1 = date_string.to_s.split('-')
+        date = Date.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i)
+      end
+
+      if (date == Date.today && time_local == "")
+        @arr2[0] = Time.now.hour
+        @arr2[1] = Time.now.min
+      else
+        @arr2 = time_local.to_s.split(':')
+      end
+
       @rooms = {}
       @status = false
+
       #Datetime type
       @start_date = DateTime.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i, @arr2[0].to_i, @arr2[1].to_i)
 
       # validate date time input
-      if (Date.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i) < Date.today)
+      if (date < Date.today)
         flash[:notice] = "Please select a valid date"
         redirect_to :action => "home"
-      elsif (Date.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i) == Date.today)
+      elsif (date == Date.today)
         if (@arr2[0].to_i < Time.now.hour)
           flash[:notice] = "Please select a valid date"
+          redirect_to :action => "home"
         elsif (@arr2[0].to_i == Time.now.hour && @arr2[1].to_i < Time.now.min)
           flash[:notice] = "Please select a valid time"
+          redirect_to :action => "home"
         end
-        redirect_to :action => "home"
-      elsif ((Date.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i) - Date.today) > 7)
+
+      elsif ((date - Date.today) > 7)
         flash[:notice] = "You can only book one week in advance"
         redirect_to :action => "home"
       elsif params[:session][:status] == "true"
