@@ -28,6 +28,11 @@ class Member < ActiveRecord::Base
     end
   end
 
+  def self.getmember(id="")
+    member = Member.find_by_id(id)
+    return member
+  end
+
   public
   def match_password(login_password="")
     password == Digest::SHA1.hexdigest(login_password).to_s

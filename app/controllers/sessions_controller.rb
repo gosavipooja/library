@@ -88,7 +88,7 @@ class SessionsController < ApplicationController
 
       if (date == Date.today)
         if (@arr2[0].to_i < Time.now.hour)
-          flash[:notice] = "Please select a valid date"
+          flash[:notice] = "Please select a valid time"
           redirect_to :action => "home"
           return
         elsif (@arr2[0].to_i == Time.now.hour && @arr2[1].to_i < Time.now.min)
@@ -141,6 +141,11 @@ class SessionsController < ApplicationController
     end
   end
 
+
+  def settings
+    @member = Member.getmember(session[:user_id])
+    render "settings"
+  end
 
   def book
     flash[:notice] = "we are here with roomno = #{params[:session][:roomnumber]}"

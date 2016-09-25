@@ -32,6 +32,7 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to @room
     else
+      flash[:notice]="Room number already exists"
       render 'add'
     end
   end
