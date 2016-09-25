@@ -4,7 +4,7 @@ class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
 
   def index
-    @members = Member.all
+      @members = Member.all
   end
 
   def create
@@ -47,11 +47,21 @@ class MembersController < ApplicationController
   end
 
   def show_admin
-    @members = Member.where("is_admin = true")
+    if session[:user_id]
+      @members = Member.where("is_admin = true")
+    else
+      redirect_to :action => "login", :controller => "sessions"
+    end
   end
+
   def show_member
-    @members = Member.where("is_admin != true")
+    if session[:user_id]
+      @members = Member.where("is_admin != true")
+    else
+      redirect_to :action => "login", :controller => "sessions"
+    end
   end
+
   private
 
   def set_member

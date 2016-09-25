@@ -1,7 +1,9 @@
 <%
   if session[:is_admin]
 %>
-<!-- Navigation -->
+    <% content_for :title, "Add new room" %>
+
+    <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -81,7 +83,7 @@
         <li><a href="/rooms">Manage Rooms</a></li>
         <li><a href="/showadmins">Manage Admins</a></li>
         <li><a href="/showmembers">Manage Members</a></li>
-        <li><a href=/logout>Log out</a></li>77
+        <li><a href=/logout>Log out</a></li>
       </ul>
     </div>
   </div>

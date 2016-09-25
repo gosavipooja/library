@@ -1,5 +1,5 @@
 class Room < ActiveRecord::Base
-  validates :roomnumber, :presence => true, :uniqueness => true
-  validates :size, :presence => true
   validates :building,  :presence => true
+  validates :roomnumber, :presence => true, :uniqueness => {:scope => :building}
+  validates :size, :presence => true
 end

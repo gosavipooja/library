@@ -1,7 +1,12 @@
 class RoomsController < ApplicationController
 
   def index
-    @rooms = Room.all
+    if session[:user_id]
+      @rooms = Room.all
+    else
+      redirect_to :action => "login", :controller => "sessions"
+    end
+
   end
 
   def show
@@ -16,9 +21,9 @@ class RoomsController < ApplicationController
   def add
     @room = Room.new
   end
+
   def edit
     @room = Room.find(params[:id])
-    @room.destroy
   end
 
   def create
@@ -41,11 +46,13 @@ class RoomsController < ApplicationController
       render 'edit'
     end
   end
+
   def destroy
     @room = Room.find(params[:id])
     @room.destroy
     redirect_to rooms_path
   end
+
   private
   def room_params
     params.require(:room).permit(:roomnumber, :size, :building)

@@ -29,9 +29,12 @@ class SessionsController < ApplicationController
   def home
     if session[:is_admin]
       redirect_to(:action => 'adminhome')
-    else
+    elsif session[:user_id]
       render "home"
+    else
+      redirect_to(:action => 'login')
     end
+
   end
 
   def logout
@@ -44,50 +47,70 @@ class SessionsController < ApplicationController
 
 
   def search
-    date_string = params[:session][:date]
-    time_local = params[:session][:time]
-    size = params[:session][:size]
-    building = params[:session][:building]
-    @arr1 = date_string.to_s.split('-')
-    @arr2 = time_local.to_s.split(':')
-    @rooms
-    #Datetime type
-    @start_date = DateTime.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i, @arr2[0].to_i, @arr2[1].to_i)
+    if session[:user_id]
+      date_string = params[:session][:date]
+      time_local = params[:session][:time]
+      size = params[:session][:size]
+      building = params[:session][:building]
+      @arr1 = date_string.to_s.split('-')
+      @arr2 = time_local.to_s.split(':')
+      @rooms = {}
+      @status = false
+      #Datetime type
+      @start_date = DateTime.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i, @arr2[0].to_i, @arr2[1].to_i)
 
-    # validate date time input
-    if (Date.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i) < Date.today)
-      flash[:notice] = "Please select a valid date"
+      # validate date time input
+      if (Date.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i) < Date.today)
+        flash[:notice] = "Please select a valid date"
+        redirect_to :action => "home"
+      elsif (Date.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i) == Date.today)
+        if (@arr2[0].to_i < Time.now.hour)
+          flash[:notice] = "Please select a valid date"
+        elsif (@arr2[0].to_i == Time.now.hour && @arr2[1].to_i < Time.now.min)
+          flash[:notice] = "Please select a valid time"
+        end
+        redirect_to :action => "home"
+      elsif ((Date.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i) - Date.today) > 7)
+        flash[:notice] = "You can only book one week in advance"
+        redirect_to :action => "home"
+      elsif params[:session][:status] == "true"
+        sql = "select * from rooms where "
+        if size != ""
+          sql += " size = "+size +" and "
+        end
 
-    elsif (Date.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i) == Date.today)
-      if (@arr2[0].to_i < Time.now.hour)
-        flash[:notice] = "Please select a valid time"
-      elsif (@arr2[0].to_i == Time.now.hour && @arr2[1].to_i < Time.now.min)
-        flash[:notice] = "Please select a valid time"
+        if building != ""
+          sql+= " building = '"+building+"' and "
+        end
+        @end_date = (@start_date.to_time + 2.hours).to_datetime
+        @rooms = Room.find_by_sql([sql+"id not in (select roomid from reservations where not (time_end < :st or time_start > :et))", {:st => @start_date, :et => @end_date}])
+        render "search"
+      else
+        @status = true
+        sql = "select * from rooms where "
+        if size != ""
+          sql += " size = "+size +" and "
+        end
+
+        if building != ""
+          sql+= " building = '"+building+"' and "
+        end
+        @end_date = (@start_date.to_time + 2.hours).to_datetime
+        @rooms = Room.find_by_sql([sql+"id in (select roomid from reservations where not (time_end < :st or time_start > :et))", {:st => @start_date, :et => @end_date}])
+        render "search"
       end
+
+      #@reserve = Reservations.where('time_start < ? AND time_start > ?
+      #                    OR time_end < ? AND time_end > ?',@start_date + DateTime.now() + @start_date + DateTime.now())
+
+      #@rooms = Member.where('id NOT IN (?)',@reserve)
+
+      #flash[:notice] = @rooms.to_s #"Date = #{params[:session][:time]} time=#{params[:session][:date]}"
+      #redirect_to (:action => 'search')
+
     else
-      sql = "select * from rooms where "
-      if size != ""
-        sql += " size = "+size +" and "
-      end
-
-      if building != ""
-        sql+= " building = '"+building+"' and "
-      end
-      @end_date = (@start_date.to_time + 2.hours).to_datetime
-      flash[:notice] = @start_date.to_s #"Date = #{params[:session][:time]} time=#{params[:session][:date]}"
-      @rooms = Room.find_by_sql([sql+"id not in (select roomid from reservations where not (time_end < :st or time_start > :et))", {:st => @start_date, :et => @end_date}])
-      flash[:notice] = @rooms
-
+      redirect_to(:action => 'login')
     end
-
-    #@reserve = Reservations.where('time_start < ? AND time_start > ?
-    #                    OR time_end < ? AND time_end > ?',@start_date + DateTime.now() + @start_date + DateTime.now())
-
-    #@rooms = Member.where('id NOT IN (?)',@reserve)
-
-    #flash[:notice] = @rooms.to_s #"Date = #{params[:session][:time]} time=#{params[:session][:date]}"
-    #redirect_to (:action => 'search')
-    render "search"
   end
 
   def book
@@ -98,4 +121,5 @@ class SessionsController < ApplicationController
   def session_params
     params.require(:session).permit(:date, :size, :building, :time)
   end
+
 end
