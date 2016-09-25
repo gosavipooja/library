@@ -14,20 +14,21 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   resources :members
-
+  resources :reservations
   root :to => "sessions#login"
   get "signup", :to => "members#index"
   get "login", :to => "sessions#login"
   post "login_attempt", :to => "sessions#login_attempt"
   get "createadmin", :to => "members#create_admin"
   get "showadmins", :to => "members#show_admin"
+  get "showmembers", :to => "members#show_member"
   get "logout", :to => "sessions#logout"
   get "home", :to => "sessions#home"
   get "adminhome", :to => "sessions#adminhome"
   get "profile", :to => "sessions#profile"
   get "setting", :to => "sessions#setting"
   get "logout", :to => "sessions#logout"
-
+  get "search", :to => "sessions#search"
   post "rooms/add"
   post "rooms/create" => "rooms#create"
   resources :rooms, :only => [:add, :create]

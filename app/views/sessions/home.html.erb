@@ -36,35 +36,38 @@
     <div class="col-md-8">
       <img src="assets/drawing.png" style="padding: 10px;"/>
       <div class="jumbotron">
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="search">
           <fieldset>
             <legend>Search for Rooms</legend>
             <div class="form-group">
               <label for="inputDate" class="col-lg-2 control-label">Date</label>
               <div class="col-lg-4">
-                <input type="text" class="form-control" id="inputDate" placeholder="Date">
+                <input type="date" class="form-control" id="inputDate" placeholder="Date" name = "session[date]">
               </div>
 
               <label for="inputTime" class="col-lg-2 control-label">Time</label>
               <div class="col-lg-4">
-                <input type="text" class="form-control" id="inputDate" placeholder="Time">
+                <input type="time" class="form-control" id="inputDate" placeholder="Time" name = "session[time]">
               </div>
             </div>
 
             <div class="form-group">
               <label for="select" class="col-lg-2 control-label">Building</label>
               <div class="col-lg-4">
-                <select class="form-control" id="select">
-                  <option>DH Hill</option>
-                  <option>Hunt</option>
+                <select class="form-control" id="select" name = "session[building]">
+                  <option value="">---</option>
+                  <option value="DH-Hill">DH Hill Library</option>
+                  <option value="James-Hunt">Dr James Hunt Library</option>
                 </select>
               </div>
 
               <label for="select" class="col-lg-2 control-label">Rooms Type</label>
               <div class="col-lg-4">
-                <select class="form-control" id="select">
-                  <option>6 Seater</option>
-                  <option>Conference</option>
+                <select class="form-control" id="select" name = "session[size]">
+                  <option value="">---</option>
+                  <option value="4">Small - 4 chairs</option>
+                  <option value="6">Medium - 6 chairs</option>
+                  <option value="12">Large - 12 chairs</option>
                 </select>
               </div>
             </div>

@@ -32,6 +32,8 @@ class MembersController < ApplicationController
 
       if is_admin
         redirect_to :action => :show_admin
+      else
+        redirect_to :action => :show_member
       end
     end
   end
@@ -47,7 +49,9 @@ class MembersController < ApplicationController
   def show_admin
     @members = Member.where("is_admin = true")
   end
-
+  def show_member
+    @members = Member.where("is_admin != true")
+  end
   private
 
   def set_member
