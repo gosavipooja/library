@@ -7,7 +7,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.time_end = (@reservation.time_start.to_time + 2.hours).to_datetime
     if !session[:is_admin]
-      @count = Reservation.find_by_sql(["select roomid from reservations where userid = :uid and  time_start >= :st", {:st => (DateTime.now.to_time + 2.hours).to_datetime, :uid => @reservation.userid}])
+      @count = Reservation.find_by_sql(["select roomid from reservations where userid = :uid and  time_start >= :st", {:st => DateTime.now, :uid => @reservation.userid}])
       if @count.size > 0
         flash[:notice] = "You can only have one active booking at a time "
         redirect_to :controller => 'sessions', :action => 'home'
@@ -18,6 +18,24 @@ class ReservationsController < ApplicationController
       redirect_to :controller => 'sessions', :action => 'home'
     else
       redirect_to :controller => 'sessions', :action => 'home'
+    end
+  end
+
+  def destroy
+    @reservation = Reservation.find(params[:id])
+    id = @reservation.userid
+    if @reservation.destroy
+      redirect_to :controller => 'members', :action => 'show', :id => id
+    end
+
+  end
+
+  def update
+    @reservation = Reservation.find(params[:id])
+    id = @reservation.userid
+    @reservation.time_end=DateTime.now
+    if @reservation.save
+      redirect_to :controller => 'members', :action => 'show', :id => id
     end
   end
 

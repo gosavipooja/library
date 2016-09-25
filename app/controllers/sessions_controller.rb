@@ -77,7 +77,7 @@ class SessionsController < ApplicationController
       @status = false
 
       #Datetime type
-      @start_date = DateTime.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i, @arr2[0].to_i, @arr2[1].to_i)
+      @start_date = DateTime.new(@arr1[0].to_i, @arr1[1].to_i, @arr1[2].to_i, @arr2[0].to_i, @arr2[1].to_i,0,'-5').utc
 
       # validate date time input
       if (date < Date.today)

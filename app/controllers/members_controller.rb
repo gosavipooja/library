@@ -38,6 +38,14 @@ class MembersController < ApplicationController
     end
   end
 
+  def show
+    if session[:is_admin]
+      @member = Member.find(params[:id])
+      @reservations = Reservation.find_by_sql(["select * from reservations where userid = :uid order by time_start desc", {:uid => params[:id]}])
+    else
+      redirect_to :action => :show_member
+    end
+  end
   def new
     @member = Member.new
   end
