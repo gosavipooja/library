@@ -83,19 +83,28 @@ class SessionsController < ApplicationController
       if (date < Date.today)
         flash[:notice] = "Please select a valid date"
         redirect_to :action => "home"
-      elsif (date == Date.today)
+        return
+      end
+
+      if (date == Date.today)
         if (@arr2[0].to_i < Time.now.hour)
           flash[:notice] = "Please select a valid date"
           redirect_to :action => "home"
+          return
         elsif (@arr2[0].to_i == Time.now.hour && @arr2[1].to_i < Time.now.min)
           flash[:notice] = "Please select a valid time"
           redirect_to :action => "home"
+          return
         end
+      end
 
-      elsif ((date - Date.today) > 7)
+      if ((date - Date.today) > 7)
         flash[:notice] = "You can only book one week in advance"
         redirect_to :action => "home"
-      elsif params[:session][:status] == "true"
+        return
+      end
+
+      if params[:session][:status] == "true"
         sql = "select * from rooms where "
         if size != ""
           sql += " size = "+size +" and "
@@ -129,11 +138,9 @@ class SessionsController < ApplicationController
 
       #flash[:notice] = @rooms.to_s #"Date = #{params[:session][:time]} time=#{params[:session][:date]}"
       #redirect_to (:action => 'search')
-
-    else
-      redirect_to(:action => 'login')
     end
   end
+
 
   def book
     flash[:notice] = "we are here with roomno = #{params[:session][:roomnumber]}"
