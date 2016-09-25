@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   get "setting", :to => "sessions#setting"
   get "logout", :to => "sessions#logout"
   get "search", :to => "sessions#search"
+  get "booking",   :to => "reservations#book"
+  get "delete", :to => "reservations#destroy"
+  get "settings", :to => "sessions#settings"
+  post "update", :to => "members#update"
   post "rooms/add"
   post "rooms/create" => "rooms#create"
   resources :rooms, :only => [:add, :create]

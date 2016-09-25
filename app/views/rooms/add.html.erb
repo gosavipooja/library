@@ -43,6 +43,15 @@
       <div class="jumbotron">
         <legend>Add Rooms</legend>
         <%= form_tag({:action => :create, :method => :post}, {:class => 'form-horizontal'}) %>
+        <% flash.each do |key, value| %>
+            <div class="row omb_row-sm-offset-3 no-gutter m-a-3">
+              <div class="col-xs-12 col-sm-6">
+                <%= content_tag(:span, value, :class => "label label-danger") %>
+              </div>
+            </div>
+            <br/>
+        <% end %>
+        <% flash.clear %>
         <div class="form-group">
           <label for="roomNumber" class="col-lg-2 control-label">Room Number</label>
           <div class="col-lg-4">
