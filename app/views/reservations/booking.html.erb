@@ -32,39 +32,25 @@
   <div class="row">
     <div class="col-md-8">
       <img src="/assets/drawing.png" style="padding: 10px;"/>
-      <div class="jumbotron">
-        <form class="form-horizontal" action="delete">
-          <fieldset>
-            <legend>Room booking confirmed</legend>
-            <% flash.each do |key, value| %>
-                <div class="row omb_row-sm-offset-3 no-gutter m-a-3">
-                  <div class="col-xs-12 col-sm-6">
-                    <%= content_tag(:span, value, :class => "label label-danger") %>
-                  </div>
-                </div>
-                <br/>
-            <% end %>
-            <% flash.clear %>
-            <div class="form-group">
-              <label for="inputDate" class="col-lg-2 control-label">Date:</label>
-              <label for="inputDate" class="col-lg-2 control-label"><%=@reservation.time_start.to_datetime.to_s%></label>
 
-            </div>
 
-            <div class="form-group">
-              <label for="select" class="col-lg-2 control-label">Building:</label>
-              <label for="select" class="col-lg-2 control-label"><%=@room.building.to_s%></label>
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">Booking Confirmation</h3>
+              </div>
+              <div class="panel-body">
+                <ul>
+                  <li><b>Date : </b> <%= @reservation.time_start.to_datetime.to_s %></li>
+                  <li><b>Room Number : </b> <%=@room.building.to_s%></li>
+                  <li><b>Building : </b> <%=@room.roomnumber.to_s%></li>
+                    </ul>
 
-              <label for="select" class="col-lg-2 control-label">Rooms Number:</label>
-              <label for="select" class="col-lg-2 control-label"><%=@room.roomnumber.to_s%></label>
-            </div>
-        </fieldset>
-        </form>
-      </div>
+
+
       <%= form_tag({:action => 'create', :method => :post, :controller => 'notifications'}, {:class => 'form-horizontal'}) %>
       <div class="form-group">
         <input type="hidden" name = "notification[text]" value ="You have a new reservation in <%= @room.roomnumber%> at <%=@room.building %> from <%=@reservation.time_start%>">
-        <label for="textArea" class="col-lg-2 control-label">EmailIds</label>
+        <label for="textArea" class="col-lg-2 control-label">Email IDs</label>
         <div class="col-lg-10">
           <textarea class="form-control" rows="3" id="textArea" name="notification[email]"></textarea>
           <span class="help-block">enter email id seperated by ,</span>
@@ -75,6 +61,8 @@
           <button type="submit" class="btn btn-primary">Notify</button>
         </div>
       </div>
+              </div>
+            </div>
     </div>
     <div class="col-md-4">
       <ul class="nav nav-pills nav-stacked">
