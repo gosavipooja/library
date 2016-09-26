@@ -1,10 +1,7 @@
-Library room reservation website
----------------------------------
-
 Admin Details
 ---------------------------
-email id = system@ncsu.edu
-password = system
+Email id = system@ncsu.edu
+Password = system
 ---------------------------
 
 Navigation
