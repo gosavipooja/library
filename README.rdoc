@@ -8,7 +8,7 @@ Navigation
 ------------------------------------------------------------------------------------------------------------
 
 1. Rooms can be searched from home page
-2. Notifications are available in My Profile page
+2. Notifications are available in My Profile page, admin can view each member's notifications
 3. Each page has different options on the right based on admin and member
 4. Reservation history has options to cancel a booking which is in the future or release an ongoing booking
 5. One can sign up in if he/she is a new member
@@ -16,10 +16,36 @@ Navigation
 7. Members can be deleted by admins via the Manage Members page
 ------------------------------------------------------------------------------------------------------------
 
+Use-cases
+-------------------------------------------------------------------------------------------------------------
+In case a room having reservations gets deleted, those members will still view the bookings in their history.
+This is because as per the member, he/she had booked it.
+None of the members who had reservations on the room get deleted.
+
+When a library member gets deleted, the history of rooms which he/she had reserved remain intact. This is
+because the history of a room should have all reservations done on a room.
+-------------------------------------------------------------------------------------------------------------
+
+Extra Credits
+--------------------------------------------------------------------------------------------------------------
+1. Admin can book more than one room on behalf of another member. In admin home page there is a On behalf of 
+field which can be used to give the email id of any member.
+
+2. When a booking is made, the member can give comma seperated email id's of regesitered members whome he/she
+would like to notify. When those members login, they can see the notifications in their My Profile page.
+--------------------------------------------------------------------------------------------------------------
+
+Test Cases
+------------------------------------------------
+Unit test for Rooms has been written
+Functional test for Rooms also has been written
+------------------------------------------------
+
 Notes
 -----------------------------------------------------------------------------------------------------------------
 For the sanity of the DB, delete records which have been created by you. Do not delete records created by others
 Website works on most devices including mobile
 Website works on Raleigh time zone
 Website may have untested problems on mozilla browser
+Git commit history can be checked in git hub or one can clone the repository and run gitk --all command.
 -----------------------------------------------------------------------------------------------------------------
