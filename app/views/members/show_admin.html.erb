@@ -65,6 +65,7 @@
             <li><a href="/rooms">Manage Rooms</a></li>
             <li><a href="/showadmins">Manage Admins</a></li>
             <li><a href="/showmembers">Manage Members</a></li>
+            <li><a href="/members/<%= session[:user_id] %>">My Profile</a></li>
         <% else %>
             <li><a href="/rooms">Rooms</a></li>
             <li><a href="/members/<%= session[:user_id] %>">My Profile</a></li>
