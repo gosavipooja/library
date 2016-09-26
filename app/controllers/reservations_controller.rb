@@ -34,7 +34,9 @@ class ReservationsController < ApplicationController
     end
 
   end
+  def book
 
+  end
   def update
     @reservation = Reservation.find(params[:id])
     id = @reservation.userid

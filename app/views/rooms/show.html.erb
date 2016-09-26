@@ -47,8 +47,18 @@
             <td><%= reservation.time_start %></td>
             <td><%= reservation.time_end %></td>
             <% if session[:is_admin] %>
-           <td><a href ="/members/<%=reservation.userid %>">Click here to view user</a></td>
+           <td><a style="color: #222;" href ="/members/<%=reservation.userid %>">Click here to view user</a></td>
+
+            <% if DateTime.parse(reservation.time_end.to_s).to_datetime > DateTime.now.to_datetime %>
+                <% if DateTime.parse(reservation.time_start.to_s).to_datetime < DateTime.now.to_datetime %>
+                    <td><a href="<%=reservation_path(reservation) %>" class="btn btn-warning btn-sm" data-confirm="Are you sure?" data-method="put" rel="nofollow">Release</a></td>
+                <% else %>
+                    <td><a href="<%=reservation_path(reservation) %>" class="btn btn-danger btn-sm" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Cancel</a></td>
                 <% end %>
+            <% else %>
+                <td></td>
+            <% end %>
+            <% end %>
           </tr>
       <% end %>
       <tr>

@@ -11,7 +11,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @reservations = Reservation.find_by_sql(["select * from reservations where roomid = :id desc", {:id => params[:id] }])
+    @reservations = Reservation.find_by_sql(["select * from reservations where roomid = :id order by time_start desc", {:id => params[:id] }])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @room }

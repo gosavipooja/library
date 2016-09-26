@@ -52,7 +52,11 @@ class SessionsController < ApplicationController
       time_local = params[:session][:time]
       size = params[:session][:size]
       building = params[:session][:building]
-
+      if session[:is_admin]
+        @uid = Member.find_by_email(params[:session][:user_id]).id
+      else
+        @uid = session[:user_id].to_s
+      end
       @arr1 = {}
       @arr2 = {}
 

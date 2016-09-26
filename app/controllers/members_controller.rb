@@ -57,11 +57,11 @@ class MembersController < ApplicationController
   end
 
   def show
-    if session[:is_admin]
+    if session[:is_admin] || (params[:id].to_s == session[:user_id].to_s)
       @member = Member.find(params[:id])
       @reservations = Reservation.find_by_sql(["select * from reservations where userid = :uid order by time_start desc", {:uid => params[:id]}])
     else
-      redirect_to :action => :show_member
+      redirect_to :action => :home, :controller => 'sessions'
     end
   end
   def new
