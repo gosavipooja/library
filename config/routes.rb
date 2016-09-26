@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   resources :members
   resources :reservations
+  resources :notifications
+  post "notifications" => "notifications#create"
+  delete "notifications" => "notifications#destroy"
   root :to => "sessions#login"
   get "signup", :to => "members#index"
   get "login", :to => "sessions#login"
