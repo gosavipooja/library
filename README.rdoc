@@ -1,28 +1,27 @@
-== README
+Library room reservation website
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Admin Details
+---------------------------
+email id = system@ncsu.edu
+password = system
+---------------------------
 
-Things you may want to cover:
+Navigation
+------------------------------------------------------------------------------------------------------------
 
-* Ruby version
+1. Rooms can be searched from home page
+2. Notifications are available in My Profile page
+3. Each page has different options on the right based on admin and member
+4. Reservation history has options to cancel a booking which is in the future or release an ongoing booking
+5. One can sign up in if he/she is a new member
+6. New admins and rooms can be added by an admin in Manage Admins and Manage Rooms pages respectively
+7. Members can be deleted by admins via the Manage Members page
+------------------------------------------------------------------------------------------------------------
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Notes
+-----------------------------------------------------------------------------------------------------------------
+For the sanity of the DB, delete records which have been created by you. Do not delete records created by others
+Website works on most devices including mobile
+Website works on Raleigh time zone
+Website may have untested problems on mozilla browser
+-----------------------------------------------------------------------------------------------------------------
