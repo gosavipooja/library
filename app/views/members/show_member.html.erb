@@ -1,3 +1,4 @@
+<% if session[:is_admin] %>
 <% content_for :title, "Manage members" %>
 
 <!-- Navigation -->
@@ -79,3 +80,6 @@
   </div>
 </div>
 <!-- /.container -->
+<% else %>
+<script type="application/javascript">window.location.href ="/home";</script>
+<% end %>

@@ -73,10 +73,15 @@
     <div class="col-md-4">
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="/adminhome">Home</a></li>
-        <li><a href="#">Settings</a></li>
-        <li><a href="/rooms">Manage Rooms</a></li>
-        <li><a href="/showadmins">Manage Admins</a></li>
-        <li><a href="/showmembers">Manage Members</a></li>
+        <li><a href="/settings">Settings</a></li>
+        <% if session[:is_admin] %>
+            <li><a href="/rooms">Manage Rooms</a></li>
+            <li><a href="/showadmins">Manage Admins</a></li>
+            <li><a href="/showmembers">Manage Members</a></li>
+        <% else %>
+            <li><a href="/rooms">Rooms</a></li>
+            <li><a href="/members/<%= session[:user_id] %>">My Profile</a></li>
+        <% end %>
         <li><a href=/logout>Log out</a></li>
       </ul>
     </div>
