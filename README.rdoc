@@ -1,4 +1,5 @@
 Library room reservation website
+---------------------------------
 
 Admin Details
 ---------------------------
