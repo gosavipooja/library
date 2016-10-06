@@ -27,8 +27,7 @@ Special Use-cases
 
 EXTRA CREDITS
 --------------------------------------------------------------------------------------------------------------
-1. Admin can book more than one room on behalf of any another member from his home page. In admin home page there is a "On behalf of" 
-field which can be used to give the email id of any member for whome the room needs to be booked.
+1. Admin can book more than one room on behalf of any another member from his home page. In admin home page there is a On behalf of field which can be used to give the email id of any member for whome the room needs to be booked.
 
 2. When a booking is made, the member/admin can give comma seperated email id's of regesitered members/admins (WITHOUT ANY SPACE) whome he/she would like to notify (EX- admin@ncsu.edu,sweekrut@ncsu.edu). When those members login, they can see the notifications in their My Profile tab.
 --------------------------------------------------------------------------------------------------------------
