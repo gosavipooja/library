@@ -37,7 +37,7 @@
             <tr>
               <th>Name</th>
               <th>Email</th>
-              <% if session[:is_admin] %>
+              <% if session[:is_admin] && session[:user_id] != @member.id%>
               <th>Delete</th>
                   <% end %>
             </tr>
@@ -46,7 +46,7 @@
             <tr>
               <td><%= @member.name %></td>
               <td><%= @member.email %></td>
-              <% if session[:is_admin] %>
+              <% if session[:is_admin] && session[:user_id] != @member.id %>
               <td>
                 <a href="<%= member_path(@member) %>" style="color:#222;" data-confirm="Are you sure?" data-method="delete" rel="nofollow">
                   <i class="fa fa-trash" aria-hidden="true"></i></a></td> <% end %>

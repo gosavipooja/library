@@ -53,7 +53,7 @@ class MembersController < ApplicationController
       @member = Member.find(params[:id])
       is_admin = @member.is_admin
       @member.destroy
-
+      Reservation.where(:userid => params[:id]).destroy_all
       if is_admin
         redirect_to :action => :show_admin
       else

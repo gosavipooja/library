@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
     if authorized_user
       session[:user_id] = authorized_user.id
       session[:name] = authorized_user.name
+      session[:email] = authorized_user.email
       if authorized_user.is_admin
         session[:is_admin] = true
         redirect_to(:action => 'adminhome')
