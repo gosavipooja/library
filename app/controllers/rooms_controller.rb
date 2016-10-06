@@ -50,6 +50,7 @@ class RoomsController < ApplicationController
 
   def destroy
     @room = Room.find(params[:id])
+    Reservation.where(:roomid => params[:id]).destroy_all
     @room.destroy
     redirect_to rooms_path
   end
