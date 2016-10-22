@@ -1,9 +1,10 @@
+==Library Rooms==
 Super Admin Details
 ---------------------------
 Email id = admin@ncsu.edu
 Password = NCState201
 ------------------------------
-Note: Dude to abuse by reviewers, we have disabled the settings page for super admin. You can create a new admin and test out the settings page (change profile details except email id).
+Note: Due to abuse by reviewers, we have disabled the settings page for super admin. You can create a new admin and test out the settings page (change profile details except email id).
 ------------------------------
 
 Navigation
